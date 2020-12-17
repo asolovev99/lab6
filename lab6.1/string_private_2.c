@@ -119,7 +119,8 @@ int index_of(CustomString* target, CustomString* substring)
 
 		while ((j >= 0) && (substring->string[j] == target->string[k])) 
 		{
-			k--; j--;
+			k--; 
+			j--;
 		}
 
 		if (j < 0) 
