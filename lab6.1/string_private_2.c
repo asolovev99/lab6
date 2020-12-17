@@ -97,25 +97,25 @@ CustomString* concat(CustomString* left, CustomString* right)
 
 int index_of(CustomString* target, CustomString* substring)
 {
-	int d[256];
-	int i, j, k, N, M;
+	int distance[256];
+	int i, j, k, length_target, length_substring;
 
-	N = get_length(target);
-	M = get_length(substring);
+	length_target = get_length(target);
+	length_substring = get_length(substring);
 	for (i = 0; i < 256; i++)
 	{
-		d[i] = M; /* изначально М во всех позициях */
+		distance[i] = length_substring;
 	}
-	for (i = 0; i < M - 1; i++) /* M – i - 1 - расстояние до конца d */
+	for (i = 0; i < length_substring - 1; i++)
 	{
-		d[(unsigned char)substring->string[i]] = M - i - 1;/* кроме последнего символа*/
+		distance[(unsigned char)substring->string[i]] = length_substring - i - 1;
 	}
 		/* поиск */
-	i = M - 1;
+	i = length_substring - 1;
 	do 
 	{
-		j = M - 1; /* сравнение строки и шаблона */
-		k = i; /* j – по шаблону, k – по строке */
+		j = length_substring - 1;
+		k = i; 
 
 		while ((j >= 0) && (substring->string[j] == target->string[k])) 
 		{
@@ -124,46 +124,13 @@ int index_of(CustomString* target, CustomString* substring)
 
 		if (j < 0) 
 		{
-			return k + 1; /* шаблон просмотрен полностью */
+			return k + 1;
 		}
-		i += d[(unsigned)target->string[i]];/*сдвиг на расстояние d[s[i]]вправо*/
+		i += distance[(unsigned)target->string[i]];
 
-	} while (i < N);
+	} while (i < length_target);
 
 	return -1;
-	/*int lenght_target = get_length(target);
-	int lenght_string = get_length(substring);
-	int is_find = 0;
-	int i = 0;
-	int j = 0;
-
-	if (substring->string == NULL)
-	{
-		return 0;
-	}
-	else
-	{
-		i = 0;
-		while (i + lenght_string <= lenght_target)
-		{
-			is_find = 1;
-			for (j = i; (j < i + lenght_string) && is_find; j++)
-			{
-				if (target->string[j] != substring->string[j - i])
-				{
-					is_find = 0;
-				}
-			}
-			if (is_find) // Нашли
-			{
-				return i;
-			}
-
-			i++;
-		}
-
-		return -1; // Не нашли
-	}*/
 }
 
 
