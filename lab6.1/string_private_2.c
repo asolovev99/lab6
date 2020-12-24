@@ -21,8 +21,6 @@ CustomString* create(char* raw)
 			result->string = (char*)realloc(result->string, sizeof(char) * (length_of_result + 2));
 			result->string[length_of_result] = raw[length_of_result];
 			result->string[length_of_result + 1] = '\0';
-
-			/*printf("%d: %c\n", length_of_result, result->string[length_of_result]);*/
 		}
 	}
 
@@ -136,7 +134,7 @@ int index_of(CustomString* target, CustomString* substring)
 
 
 
-void print_CustomString(CustomString* string)
-{
-	printf("%s\n", string->string);
-}
+//void print_CustomString(CustomString* string)
+//{
+//	printf("%s\n", string->string);
+//}
